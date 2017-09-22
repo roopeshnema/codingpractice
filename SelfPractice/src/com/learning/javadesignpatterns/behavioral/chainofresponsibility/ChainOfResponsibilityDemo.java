@@ -7,6 +7,12 @@ public class ChainOfResponsibilityDemo {
 		VP B = new VP();
 		CEO C = new CEO();
 		
+		A.setSuccessor(B);
+		B.setSuccessor(C);
+		
+		Request request = new Request(RequestType.PURCHASE, 1800);
+		A.handleRequest(request);
+		
 	}
 
 }
