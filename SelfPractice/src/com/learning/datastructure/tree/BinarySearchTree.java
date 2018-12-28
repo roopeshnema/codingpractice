@@ -163,4 +163,158 @@ public class BinarySearchTree {
 			}
 		}	
 	}
+	
+	/**
+         *  Find max element in BST (With Recursion).
+         *  Solution : Search max in leftSubTree, rightSubTree recursively and compare with rootdata
+         *  which ever is max returned that value.
+         */
+        public int maxInBinarySearchTreeR(TreeNode root){            
+            int data = 0;
+            int maxLeft = 0;
+            int maxRight = 0;
+            if(root == null){
+                return data;
+            }
+            maxLeft = maxInBinarySearchTreeR(root.getLeftnode());
+            maxRight = maxInBinarySearchTreeR(root.getRightnode());
+            
+            if(maxLeft > maxRight) {
+                data = maxLeft;
+            } else {
+                data = maxRight;
+            }
+            
+            if(root.getData() > data) {
+                data = root.getData();
+            }
+            return data;
+        }
+
+        /**
+         *  Find max element in BST (Without Recursion).
+         *  Solution : Search max in leftSubTree, rightSubTree recursively and compare with rootdata
+         *  which ever is max returned that value.
+         */
+        
+        public int maxInBinarySearchTreeWR(TreeNode root){
+            int maxData = 0;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            while(!queue.isEmpty()) {
+                TreeNode temp = queue.poll();
+                if(temp.getData() > maxData) {
+                    maxData = temp.getData();
+                }
+                if(temp.getLeftnode() != null) {
+                    queue.offer(temp.getLeftnode());
+                }
+                if(temp.getRightnode() != null) {
+                    queue.offer(temp.getRightnode());
+                }
+            }            
+            return maxData;
+        }
+        
+        /**
+         * Search an element is BST (Recursion).
+         * 
+         * @param root
+         * @param searchData
+         * @return 
+         */
+        public boolean searchElementInBSTR(TreeNode root, int searchData) {
+            if(root == null) {
+                return false;
+            }
+            
+            if(root.getData() == searchData) {
+                return true;
+            }
+            return (searchElementInBSTR(root.getLeftnode(),searchData) || searchElementInBSTR(root.getRightnode(),searchData));
+        }
+        
+        /**
+         * Search an element is BST (Without Recursion).
+         */
+        public boolean searchElementInBSTWR(TreeNode root, int searchData) {
+            if(root == null) {
+                return false;
+            }            
+            Queue<TreeNode> queue = new LinkedList<>();            
+            queue.offer(root);
+            while(!queue.isEmpty()) {
+             TreeNode treeNode = queue.poll();
+             if(treeNode.getData() == searchData) {
+                 return true;
+             }
+             
+             if(treeNode.getLeftnode() != null) {
+                 queue.offer(treeNode.getLeftnode());
+             }
+             if(treeNode.getRightnode() != null) {
+                 queue.offer(treeNode.getRightnode());
+             }             
+            }
+            return false;
+        }
+       
+    public TreeNode insertIntoBST(TreeNode root, int data) {
+                
+        TreeNode newNode = new TreeNode();
+        newNode.setData(data);        
+        return insertNode2(root,newNode);        
+    }    
+    
+    private TreeNode insertNode2(TreeNode root, TreeNode newNode){
+        if(root == null) {
+            this.setRoot(newNode);
+            return newNode;
+        }
+        
+        if(newNode.getData() > root.getData()) {
+            
+            if(root.getRightnode() == null) {
+                root.setRightnode(newNode);
+            }else {
+                insertNode2(root.getRightnode(),newNode);
+            }            
+            
+        } else {
+            if(root.getLeftnode() == null) {
+                root.setLeftnode(newNode);
+            } else {
+                insertNode2(root.getLeftnode(),newNode);
+            }
+        }
+       return root; 
+    }
+    
+    public TreeNode insertIntoBSTWR(TreeNode root, int data) {                
+        TreeNode newNode = new TreeNode();
+        newNode.setData(data);        
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while(!queue.isEmpty()) {
+         
+            TreeNode node = queue.poll();
+            if(data > node.getData()) {
+                if(node.getRightnode() == null) {
+                    node.setRightnode(newNode);
+                } else {
+                   queue.offer(node.getRightnode());
+                }
+            } else {
+                if(node.getLeftnode() == null) {
+                    node.setLeftnode(newNode);
+                } else {
+                    queue.offer(node.getLeftnode());
+                }
+            }
+        }
+        return root;
+    }
+	
 } 
