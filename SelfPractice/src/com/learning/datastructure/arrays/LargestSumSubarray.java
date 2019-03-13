@@ -5,9 +5,9 @@ public class LargestSumSubarray {
 	public static void main(String[] args) {
 		//int[] intArray = {-1,3,5,-10,5,7,2,-2,20,-15,2,6};
 		//int[] intArray = { 1, 2, 3, 4 };
-		int[] intArray = {-6, -2, 3, 2, 0, -2, 1, 7, -6, 6, -2};
+		int[] intArray = {1, 2, 3, 4 ,7,6};
 		//exceedSubArray(intArray,6);
-		System.out.println(subArrayExceedsSum(intArray,8));
+		System.out.println(subArrayExceedsSum(intArray,7));
 	}
 	
 	// Solution 2

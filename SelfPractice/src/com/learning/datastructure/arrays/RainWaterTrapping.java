@@ -20,7 +20,7 @@ package com.learning.datastructure.arrays;
  **     ___|___|___|_*_|___|___|_*_|___|___|_*_|___|___
  **     {0,  1,  3,  0,  1,  2,  0,  4,  2,  0,  3,  0}
  **
- **     Solution: In this example 13 units of water (*) could be captured.
+ **     Solution: In this example 13 units of snow (*) could be captured.
  *
  * @author Roopesh
  *
@@ -31,14 +31,14 @@ public class RainWaterTrapping {
 	
 	/**
 	 *  Here we are going to build 2 arrays leftMaxArr and rightMaxArr
-	 *  Step 1 : To populate leftMaxArr, look for highest building in left side of current index and then compare 
+	 *  Step 1 : To populate leftMaxArr, look for highest building in left side of current and then compare 
 	 *  it with current, which ever is higher, populate it in the current index of leftMaxArr.
 	 *   
 	 *  Step 2 : To populate rightMaxArr, look for highest building in right side of current and then compare 
 	 *  it with current, which ever is higher, populate it in the current index of rightMaxArr.
 	 *  
-	 *  Step 3 : Now we know left and right max for all the indexes(building), so iterate over the building array and just get 
-	 *  the minimum of these 2 and subtract the building height, that will give the water trapped on that building,  
+	 *  Step 3 : Now we know left and right max for all the indexes, so iterate over the building array and just get 
+	 *  the min of these 2 and subtract the building height, that will give the water trapped on that building,  
 	 *  
 	 */
 	
@@ -52,16 +52,13 @@ public class RainWaterTrapping {
 		int leftLargest = 0;
 		int rightLargest = 0;
 		int totalWater = 0;
-		
-		//Step 1
 		for(int i=0; i<arr.length; i++) {
 			if(leftLargest < arr[i]) {
 				leftLargest = arr[i];
 			} 
 			leftMaxArr[i] = leftLargest;
 		}
-		
-		//Step 2
+
 		for(int i=arr.length-1; i>=0; i--) {
 			if(rightLargest < arr[i]) {
 				rightLargest = arr[i];
@@ -69,15 +66,30 @@ public class RainWaterTrapping {
 			rightMaxArr[i] = rightLargest;
 		}
 		
-		//Step 3
+		for(int i=0; i<leftMaxArr.length; i++) {
+			System.out.print(leftMaxArr[i] + " ");
+			
+			
+		}
+		System.out.println("");
+		for(int i=0; i<rightMaxArr.length; i++) {
+			System.out.print(rightMaxArr[i] + " ");
+			
+			
+		}
+
 		for(int i=0; i<arr.length; i++) {
 			totalWater = totalWater + ( Math.min(leftMaxArr[i], rightMaxArr[i]) - arr[i]);
 		}
-		return totalWater;
+
+		System.out.println();
+		System.out.println("Total water trapped is :" + totalWater);
+
+		return null;
 	}
 
 	public static void main(String[] args) {
-		Integer[] blockArr = {0,1,3,0,1,2,0,4,2,0,3,0};
-		System.out.println("Total water trapped is :" + computeRainWaterTrapping(blockArr));
+		Integer[] blockArr = {1,0,3,0,2,0,3};
+		computeRainWaterTrapping(blockArr);
 	}
 }
