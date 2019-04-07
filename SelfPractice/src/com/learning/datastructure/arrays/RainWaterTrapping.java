@@ -89,7 +89,7 @@ public class RainWaterTrapping {
 	}
 
 	public static void main(String[] args) {
-		Integer[] blockArr = {1,0,3,0,2,0,3};
+		Integer[] blockArr = {1,8,6,2,5,4,8,3,7,1};
 		computeRainWaterTrapping(blockArr);
 	}
 }

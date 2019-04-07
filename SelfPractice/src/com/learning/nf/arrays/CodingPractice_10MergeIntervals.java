@@ -55,8 +55,9 @@ public class CodingPractice_10MergeIntervals {
 		CodingPractice_10MergeIntervals driver = new CodingPractice_10MergeIntervals();
 		List<Interval> input = new ArrayList<Interval>();
 		
-		input.add(new Interval(1,3));
 		input.add(new Interval(2,6));
+		input.add(new Interval(1,3));
+		
 		input.add(new Interval(8,10));
 		input.add(new Interval(15,18));
 		
