@@ -14,12 +14,13 @@ public class TokenBucketFilterDemonstration {
         Set<Thread> allThreads = new HashSet<Thread>();
         final TokenBucketFilter tokenBucketFilter = new TokenBucketFilter(5);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
 
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     try {
                         tokenBucketFilter.getToken();
+                        
                     } catch (InterruptedException ie) {
                         System.out.println("We have a problem");
                     }
